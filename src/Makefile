@@ -13,27 +13,31 @@ VERSION=	0.0.1a
 OPTS=		-DVERSION=\"$(VERSION)\" #-DNDEBUG
 
 CC =		gcc
-CFLAGS=		-std=c99 -pedantic-errors -g -Wall -Werror -O1 -Wstack-protector -fstack-protector-all
+## Position independent code is not necessary for archives.
+CFLAGS=		-std=c99 -fPIC -pedantic-errors -g -Wall -Werror -O1
 
 .SUFFIXES: .c .o
 
 all: archive 
 
-# Create an archive because shared libraries are slower/more difficult for me
-# to conceptualize :P
 archive: $(OBJ)
-	$(AR) $(AROPTS) $(LIB) $(OBJ)
+	@echo -ne \\t Adding $(OBJ) to $(LIB) ..
+	@$(AR) $(AROPTS) $(LIB) $(OBJ)
+	@echo " done."
 
 .c.o:
-	$(CC) -c $(OPTS) $(CFLAGS) $<
-
+	@echo -ne \\t Compiling $< ..
+	@$(CC) -c $(OPTS) $(CFLAGS) $<
+	@echo " done."
 
 install:
-	@echo installing executable to $(INSTALL)
+	@echo -ne \\t Installing executable to $(INSTALL) ..
 	@${SUDO} cp $(LIB) $(INSTALL)
+	@echo " done."
 
 clean:
-	@echo Removing object files
+	@echo -ne \\t Removing object files ..
 	@rm -f $(LIB) *.o
+	@echo " done."
 
 .PHONY: clean all
