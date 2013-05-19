@@ -1,4 +1,4 @@
-# fpsgenie (First-Person Shooter Genie)
+# hist
 
 * Authors: James Smith
 
@@ -24,7 +24,7 @@ If you want commit acces, e-mail me and tell me why.
 * git clone git://github.com/drphitheta/histogram.git  
 * cd histogram/src  
 * make clean && make  
-* Optionally, SUDO=sudo make install  
+* Optionally, make SUDO=sudo install  
 
 ### Running
 
