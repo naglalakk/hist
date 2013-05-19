@@ -5,7 +5,7 @@ SHELL=		/bin/sh
 INSTALL=	/usr/local/lib
 AR=			ar
 AROPTS=		rcs
-LIB=		hist
+LIB=		libhist.a
 
 SRC=		hist.c
 OBJ=		$(SRC:.c=.o)
@@ -22,7 +22,7 @@ all: archive
 # Create an archive because shared libraries are slower/more difficult for me
 # to conceptualize :P
 archive: $(OBJ)
-	$(AR) $(AROPTS) lib$(LIB).a $(OBJ)
+	$(AR) $(AROPTS) $(LIB) $(OBJ)
 
 .c.o:
 	$(CC) -c $(OPTS) $(CFLAGS) $<
@@ -34,6 +34,6 @@ install:
 
 clean:
 	@echo Removing object files
-	@rm -f $(LIB) *.o $(.CURDIR)/*.BAK 
+	@rm -f $(LIB) *.o
 
 .PHONY: clean all

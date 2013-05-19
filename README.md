@@ -1,6 +1,6 @@
 # fpsgenie (First-Person Shooter Genie)
 
-*Authors: James Smith, 
+* Authors: James Smith
 
 ***
 
@@ -38,4 +38,5 @@ yourself heartbreak and suffering. No one needs that. Heed my advice.
 
 ## License
 
-This software is licensed under the Lesser GPL(LGPL-2.1) license.
+This software is licensed under the Lesser General Public License(LGPL) version
+3.
