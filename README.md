@@ -1,8 +1,75 @@
-# hist
+hist FORK
+=========
 
-* Authors: James Smith
+Example from test.c file
 
+
+
+    /*Testing data sets*/
+
+    struct histogram *datagram;
+
+    struct field *dataset = malloc(sizeof(struct field) * 12);
+
+    histCreate(&datagram, 12, HISTOGRAM_VERTICAL);
+
+    char *months[12] = {"January", "February", "March", "April", "May",
+					  	"June","July", "August", "September", "October",
+					  	"November", "December"};
+
+    int  stats[12] 	 = { 10, 12, 9, 5, 3, 11, 5, 7, 2, 1, 12, 22 }; 
+
+    char *colors[12] = {"Blue", "Red", "Green", "Yellow", "Orange",
+						"Magenta", "Cyan", "Purple", "Brown","White",
+						"Pink","Default"};
+
+    for(i = 0; i < 12; i++) {
+			dataset[i].name = months[i];
+			dataset[i].freq = stats[i];
+			dataset[i].cv   = colors[i];
+    }
+
+    histAdd(&datagram, dataset);
+
+
+And then print:
+
+    histPrint(datagram);
+
+Screenshot 1
+======
+
+![Vertical histogram](vert.jpg "")
+
+
+Example 2
+=========
+
+Try changing orientation
+
+    changeOrientation(&datagram, HISTOGRAM_HORIZONTAL)
+
+Screenshot 2
+============
+
+![Horizontal histogram](horiz.jpg "")
+	
+
+Note
+=====
+What is needed:
+
+	Colors are not fully implemented yet
+	Scaling
+	Applying fields to x/y axis with proper formatting
+
+
+I leave rest of James Smith notes here
+
+#hist
+	Authors: James Smith
 ***
+
 
 ## Description
 
