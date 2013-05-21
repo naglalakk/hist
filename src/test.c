@@ -14,31 +14,33 @@ int main(int argc, char **argv)
 		3.  Return output
 	*/
 
-	
-
 	struct histogram *new_hist;
 
-	error_code  = histCreate(&new_hist, 12, HISTOGRAM_VERTICAL);
+	printf("========TEST ONE=======\n");
 
-	//print_code  = histPrint(new_hist);
+	error_code  = histCreate(&new_hist, 10, HISTOGRAM_VERTICAL);
 
-	//finale_code = histDestroy(new_hist);
+	print_code  = histPrint(new_hist);
+
+	finale_code = histDestroy(new_hist);
 
 	printf("Test 1, codes are [ %d %d %d ] \n", error_code, print_code, finale_code);
 
 	
 	/*Histogram info*/
-	
-	char get_orientation = new_hist->orientation < 1 ? 'V' : 'H';
+
+	runHistInfo(new_hist, LITE);	
+	printf("=======================\n");
 
 	int i;
-	printf("Fields	      =	%d \n", new_hist->fields);
-	printf("Orienatation  = %c \n", get_orientation);
-
 
 	/*Testing data sets*/
 
+	struct histogram *datagram;
+
 	struct field *dataset = malloc(sizeof(struct field) * 12);
+
+	histCreate(&datagram, 12, HISTOGRAM_VERTICAL);
 
 	char *months[12] = {"January", "February", "March", "April", "May",
 					  	"June","July", "August", "September", "October",
@@ -56,11 +58,35 @@ int main(int argc, char **argv)
 			dataset[i].cv   = colors[i];
 	}
 
-	histAdd(&new_hist, dataset);
+	histAdd(&datagram, dataset);
+
+	printf("\n");
+	printf("=======HISTOGRAM VERTICAL=========\n");
+
+	/*Display info*/
+	runHistInfo(datagram, FULL);
 
 	/*Test setting axis compared to Vertical histogram*/
 
-	histPrint(new_hist);
+	histPrint(datagram);
 
-	histDestroy(new_hist);
+	printf("=================================\n");
+
+
+	printf("\n");
+	printf("/*Let's try changing layout*/\n");
+	printf("run : changeOrientation(&datagram, HISTOGRAM_HORIZONTAL);\n");
+
+	changeOrientation(&datagram, HISTOGRAM_HORIZONTAL);
+
+
+	printf("\n");
+	printf("======HISTOGRAM HORIZONTAL========\n");
+	runHistInfo(datagram, LITE);
+	
+	histPrint(datagram);
+
+	printf("=================================\n");
+
+	histDestroy(datagram);
 }

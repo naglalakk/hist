@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 
 /* Wordplay humour */
+enum VERBOSE	{ LITE, FULL };
 enum HIST_ORIEN { HISTOGRAM_VERTICAL = 0, HISTOGRAM_HORIZONTAL};
 
 struct field {
@@ -56,5 +56,9 @@ int getLimit(struct histogram *a);
 int *getEnumWidth(int max);
 
 int *getEnumWhoriz(int max);
+
+int changeOrientation(struct histogram **a, int orio);
+
+void runHistInfo(struct histogram *a, int v);
 
 #endif /* HISTOGRAM_H */

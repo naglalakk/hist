@@ -38,14 +38,6 @@ int *getEnumWidth(int max)
 		numericWidth[i] = max_len - strlen(buf);
 	}
 
-
-	printf("Values are: [ ");
-	for(i = 0; i < max; i++) {
-		printf(" %d " , numericWidth[i]);
-	}
-
-		printf("]\n");
-
 	return numericWidth;
 }
 
@@ -53,12 +45,10 @@ int *getEnumWhoriz(int max)
 {
 	int i;
 	char buf[15];
-	char pbuf[15];
 	sprintf(buf, "%d", max);
 	int *horizontalSpacingWidth = malloc(sizeof(int) * max);
-	int max_len = strlen(buf);
 	int tmp_width;
-	const sep = 3;
+	const int sep = 3;
 	
 	for(i = 1; i <= max; i++) {
 		
@@ -69,10 +59,14 @@ int *getEnumWhoriz(int max)
 
 	}
 
-
 	return horizontalSpacingWidth;
+}
 
-
+int changeOrientation(struct histogram **a, int orio)
+{
+	(*a)->orientation = orio;
+	
+	return (1);
 }
 
 void
@@ -80,6 +74,34 @@ ms(int space, int symbol)
 {
 	while (space-- > 0)
 		printf("%c", symbol);
+}
+
+void runHistInfo(struct histogram *a, int v)
+{
+	int i;
+	char orientat = a->orientation < 1 ? 'V' : 'H';
+	printf("Fields	      =	%d \n", a->fields);
+	printf("Orienatation  = %c \n", orientat);
+
+	if(v == FULL) {
+	printf("Fields are [ ");
+	
+	for(i = 0; i < a->fields;i++) 
+		printf("%s ", a->data[i].name);
+
+	printf(" ]\n");
+
+	printf("Values are [ ");
+	
+	for(i = 0; i < a->fields;i++)
+		printf("%d " , a->data[i].freq);
+
+		printf(" ]\n");
+	}
+
+
+
+
 }
 
 /* Initialize a new histogram */
@@ -118,8 +140,6 @@ int histPrint(struct histogram *a)
 	char 	buf[15];
 	int 	x_padding;
 	int 	*horiz_spacing 	= getEnumWhoriz(ax_max);
-	const int seperator = 2;
-
 
 	/*Get space padding for x - axis
 	  requires max element width of
@@ -191,6 +211,7 @@ int histPrint(struct histogram *a)
 		printf("\n");
 
 	free(enumWidth);
+	free(horiz_spacing);
 
 	return (1);
 }
