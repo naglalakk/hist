@@ -100,8 +100,7 @@ void runHistInfo(struct histogram *a, int v)
 	}
 
 
-
-
+	printf("\n");
 }
 
 /* Initialize a new histogram */
@@ -159,9 +158,13 @@ int histPrint(struct histogram *a)
 				if(a->data[f].freq < y)
 					printf(" ");
 
-				else	
+				else {	
+					printf("%s",a->data[f].cv);
 					printf("█");
+				}
+					
 
+				printf("%s", DEFAULT);
 				printf("  ");
 			}
 			
@@ -182,9 +185,12 @@ int histPrint(struct histogram *a)
 					if(a->data[y].freq < i)
 						printf(" ");
 
-					else
+					else {
+						printf("%s",a->data[y].cv);
 						printf("██");
+					}
 
+					printf("%s", DEFAULT);
 					printf(" ");
 						
 				}
@@ -207,8 +213,7 @@ int histPrint(struct histogram *a)
 		}
 
 	}
-
-		printf("\n");
+		printf("\n\n");
 
 	free(enumWidth);
 	free(horiz_spacing);
