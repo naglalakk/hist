@@ -19,9 +19,9 @@ Example from test.c file
 
     int  stats[12] 	 = { 10, 12, 9, 5, 3, 11, 5, 7, 2, 1, 12, 22 }; 
 
-    char *colors[12] = {"Blue", "Red", "Green", "Yellow", "Orange",
-						"Magenta", "Cyan", "Purple", "Brown","White",
-						"Pink","Default"};
+	char *colors[12] = {BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA,
+						CYAN, WHITE, DEFAULT, YELLOW, RED, BLUE};
+
 
     for(i = 0; i < 12; i++) {
 			dataset[i].name = months[i];
