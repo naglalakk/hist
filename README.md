@@ -59,7 +59,7 @@ Note
 =====
 What is needed:
 
-	Colors are not fully implemented yet
+	Colors are not fully implemented yet | *FIXED(unix)
 	Scaling
 	Applying fields to x/y axis with proper formatting
 
